@@ -1,0 +1,42 @@
+[package]
+name = "MassDX"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# runtime/async
+tokio = { version = "1.38.0", features = ["full"] }
+
+# postgres
+sqlx = { version = "0.7.4", features = [
+    "runtime-tokio",  # Use the tokio runtime
+    "tls-rustls",     # Use the rustls TLS backend
+    "postgres",       # Enable Postgres support
+    "macros",         # Enable query!(), etc.
+    "chrono",         # Enable chrono types (like Timestamptz)
+    "uuid",           # Enable UUID types
+] }
+
+# web api server
+axum = "0.7.5"
+
+# scheduling
+tokio-cron-scheduler = "0.10.1"
+
+# web3
+ethers = { version = "2.0.14", features = ["rustls", "ws"] } # "rustls" is correct here
+
+#requests
+reqwest = { version = "0.12.5", features = ["json", "rustls-tls"] }
+
+# logging
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
+
+# congif/secrets
+config = "0.14.0"
+secrecy = { version = "0.8.0", features = ["serde"] }
+
+# helper
+chrono = { version = "0.4.38", features = ["serde"] }
+uuid = { version = "1.10.0", features = ["v4", "serde"] }
